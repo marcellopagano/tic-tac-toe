@@ -18,9 +18,10 @@ body {
     color: antiquewhite;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 10px 0;
     justify-content: center;
+    align-items: baseline;
 }
 
 #container {
@@ -35,25 +36,24 @@ body {
     flex-wrap: wrap;
 }
 
-.circle {
-    width: 120px;
-    height: 120px;
-    background-image: url('../img/o.png');
-    border: 1px dashed yellow;
-}
-
-.cross {
-    width: 120px;
-    height: 120px;
-    background-image: url('../img/x.png');
-    border: 1px dashed yellow;
-}
-
+.circle,
+.cross,
 .empty {
     width: 120px;
     height: 120px;
-    background-color: black;
     border: 1px dashed yellow;
+}
+
+.circle {
+    background-image: url('../img/o.png');
+}
+
+.cross {
+    background-image: url('../img/x.png');
+}
+
+.empty {
+    background-color: black;
 }
 
 .scoreCircle,
@@ -74,4 +74,19 @@ body {
 
 .scoreMessage {
     color: whitesmoke;
+}
+
+.winner {
+    text-shadow: 2px 2px darkred;
+    animation: win .5s infinite alternate;
+}
+
+@keyframes win {
+    from {
+        color: yellow
+    }
+
+    to {
+        color: gold
+    }
 }

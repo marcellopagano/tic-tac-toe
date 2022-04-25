@@ -1,6 +1,6 @@
 # Tic tac toe : html5 + css + js (Demo)
 
-## This is a demo part of the tic-tac-toe game made entirely with html5, css and javascript, this demo does not use canvas
+This is a demo part of the tic-tac-toe game made entirely with html5, css and javascript, this demo does not use canvas.
 
 </br>
 

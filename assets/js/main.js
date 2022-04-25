@@ -3,6 +3,9 @@ import { sfx } from "./sfx.js"
 const viewScore = document.getElementById('score')
 const viewGame = document.getElementById('game')
 const viewMessage = document.getElementById('message')
+// cup image
+let cup = new Image(44, 40)
+cup.src = '/assets/img/cup.png'
 // original start map 
 const initMap = () => {
     return [
@@ -28,9 +31,13 @@ const winComb = [
 const assets = {
     selectID: 1, // current player
     score: {
-        circle: 0,
-        cross: 0,
-        rounds: 3, // next features
+        O: 0,
+        X: 0,
+        rounds: 3,
+        game: {
+            O: 0,
+            X: 0
+        }
     },
     circle: {
         id: 0,
@@ -60,14 +67,13 @@ const assets = {
         viewScore.textContent = ''
         const scoreCross = document.createElement('div')
         scoreCross.classList.add('scoreCross')
-        scoreCross.textContent = `X:${assets.score.cross}`
+        scoreCross.textContent = `X:${assets.score.X}-${assets.score.game.X}`
         viewScore.appendChild(scoreCross)
         const scoreCircle = document.createElement('div')
         scoreCircle.classList.add('scoreCircle')
-        scoreCircle.textContent = `O:${assets.score.circle}`
+        scoreCircle.textContent = `O:${assets.score.O}-${assets.score.game.O}`
         viewScore.appendChild(scoreCircle)
     },
-
 }
 
 let count = 0
@@ -84,8 +90,8 @@ const mapDraw = () => {
 // click handler
 const clickHandler = () => {
     viewGame.addEventListener('click', ({ target }) => {
-        const idxGrid = Array.from(target.parentNode.children).indexOf(target)
-
+        viewMessage.classList.remove('winner')
+        const idxGrid = Array.from(target.parentNode.children).indexOf(target);
         if (map[idxGrid] === assets.empty.id) {
             if (assets.circle.id === assets.selectID) {
                 map[idxGrid] = assets.selectID
@@ -109,10 +115,11 @@ function checkDraw() {
     const drawMatch = map.filter(v => v === 9).length
     if (drawMatch === 0) {
         restart()
-        viewMessage.textContent = 'draw match.'
+        viewMessage.textContent = 'draw match'
     }
 }
 // check win match
+let winner = null
 function checkWin() {
     viewMessage.textContent = ''
     winComb.forEach(arr => {
@@ -121,9 +128,8 @@ function checkWin() {
             if (map[v] === player)
                 count++
             if (count === 3) {
-                let winner
-                player ? winner = 'cross' : winner = 'circle'
-                viewMessage.textContent = winner + ' win'
+                player ? winner = 'X' : winner = 'O'
+                viewMessage.textContent = 'round ' + winner
                 assets.score[winner]++
                 assets.makeScore()
                 restart()
@@ -132,6 +138,17 @@ function checkWin() {
             }
         })
     })
+    // check game win
+    if ((assets.score.O === assets.score.rounds) || (assets.score.X === assets.score.rounds)) {
+        viewMessage.classList.add('winner')
+        viewMessage.textContent = winner + ' win game'
+        assets.score.O = 0
+        assets.score.X = 0
+        assets.score.game[winner]++
+        assets.makeScore()
+        viewMessage.appendChild(cup)
+        sfx.win().play()
+    }
 }
 // restart match
 function restart() {
