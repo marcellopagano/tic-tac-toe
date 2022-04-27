@@ -4,7 +4,7 @@ This is a demo part of the tic-tac-toe game made entirely with html5, css and ja
 
 </br>
 
-![Tux, the Linux mascot](./readme.jpg)
+![readme](./readme.jpg)
 
 ## Features
 
