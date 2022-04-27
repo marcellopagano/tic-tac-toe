@@ -5,7 +5,7 @@ const viewGame = document.getElementById('game')
 const viewMessage = document.getElementById('message')
 // cup image
 let cup = new Image(44, 40)
-cup.src = '/assets/img/cup.png'
+cup.src = './assets/img/cup.png'
 // original start map 
 const initMap = () => {
     return [
