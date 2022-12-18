@@ -1,10 +1,14 @@
 # Tic tac toe : html5 + css + js (Demo)
 
-This is a demo part of the tic-tac-toe game made entirely with html5, css and javascript, this demo does not use canvas.
-
-</br>
-
 ![readme](./readme.jpg)
+
+## [english]
+The tic-tac-toe game made entirely with html5, css and javascript.
+
+## [italian]
+Il gioco tic-tac-toe realizzata interamente con html5, css e javascript.
+
+[Tic tac toe DEMO](https://marcellopagano.github.io/tic-tac-toe/)
 
 ## Features
 
